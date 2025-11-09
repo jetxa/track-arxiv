@@ -30,6 +30,7 @@ jobs:
         MAX_RESULT: ${{ secrets.MAX_RESULT }}
       run: python get_arxiv_paper.py
     - name: commit
+      id: commit
       run: |
         git config --local user.email "action@github.com"
         git config --local user.name "github-actions"
