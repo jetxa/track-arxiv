@@ -6,12 +6,12 @@ import requests
 import time
 from openai import OpenAI
 
-model_name = os.environ.get("MODEL_NAME", "deepseek-chat")
-base_url = os.environ.get("BASE_URL", "https://api.deepseek.com")
-api_key = os.environ.get("API_KEY", "sk-d7cdfe5c1a9e46fa8999bab543609fc6")
+model_name = os.getenv("MODEL_NAME", "deepseek-chat")
+base_url = os.getenv("BASE_URL", "https://api.deepseek.com")
+api_key = os.getenv("API_KEY", "sk-d7cdfe5c1a9e46fa8999bab543609fc6")
 
-bot_url = os.environ.get("BOT_URL", "https://open.feishu.cn/open-apis/bot/v2/hook/73f039f8-378d-4145-9cca-7d13a6d1927b")
-max_result = os.environ.get("MAX_RESULT", 20)
+bot_url = os.getenv("BOT_URL", "https://open.feishu.cn/open-apis/bot/v2/hook/73f039f8-378d-4145-9cca-7d13a6d1927b")
+max_result = os.getenv("MAX_RESULT", 20)
 
 translateion_prompt = "你是一个专业的英文论文摘要翻译助手，擅长翻译为中文。请将以下论文摘要翻译成中文，确保内容准确流畅。"
 

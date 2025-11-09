@@ -16,12 +16,6 @@ jobs:
   build:
 
     runs-on: ubuntu-latest
-    env:
-      MODEL_NAME: ${{ secrets.MODEL_NAME }}
-      BASE_URL: ${{ secrets.BASE_URL }}
-      API_KEY: ${{ secrets.API_KEY }}
-      BOT_URL: ${{ secrets.BOT_URL }}
-      MAX_RESULT: ${{ secrets.MAX_RESULT }}
 
     steps:
     - uses: actions/checkout@v4
@@ -32,6 +26,12 @@ jobs:
     - name: Install dependencies
       run: pip install -r requirements.txt
     - name: Push paper
+      env:
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
+        BASE_URL: ${{ secrets.BASE_URL }}
+        API_KEY: ${{ secrets.API_KEY }}
+        BOT_URL: ${{ secrets.BOT_URL }}
+        MAX_RESULT: ${{ secrets.MAX_RESULT }}
       run: python get_arxiv_paper.py
     - name: commit
       run: |
