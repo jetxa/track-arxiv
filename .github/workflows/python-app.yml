@@ -2,8 +2,8 @@ name: push_paper
 
 on:
   workflow_dispatch:
-  # schedule:
-  #   - cron: '0 0 * * *' # 每天北京时间8:00执行
+  schedule:
+    - cron: '0 0 * * *' # 每天北京时间8:00执行
 
 permissions:
   contents: write
