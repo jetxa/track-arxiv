@@ -8,9 +8,10 @@ from openai import OpenAI
 
 model_name = os.environ.get("MODEL_NAME", "deepseek-chat")
 base_url = os.environ.get("BASE_URL", "https://api.deepseek.com")
-api_key = os.environ.get("API_KEY", "")
-bot_url = os.environ.get("BOT_URL", "")
-max_result = os.environ.get("MAX_RESULT", "20")
+api_key = os.environ.get("API_KEY", "sk-d7cdfe5c1a9e46fa8999bab543609fc6")
+
+bot_url = os.environ.get("BOT_URL", "https://open.feishu.cn/open-apis/bot/v2/hook/73f039f8-378d-4145-9cca-7d13a6d1927b")
+max_result = os.environ.get("MAX_RESULT", 20)
 
 translateion_prompt = "你是一个专业的英文论文摘要翻译助手，擅长翻译为中文。请将以下论文摘要翻译成中文，确保内容准确流畅。"
 
@@ -86,7 +87,7 @@ def search_arxiv(query: str = 'cat:cs.IR', max_results: int = 20):
     # 搜索参数
     search = arxiv.Search(
         query=query,
-        max_results=max_results,
+        max_results=int(max_results),
         sort_by=arxiv.SortCriterion.SubmittedDate,
         sort_order=arxiv.SortOrder.Descending
     )
@@ -127,6 +128,7 @@ if __name__ == "__main__":
     
     # search new papers
     query = 'cat:cs.IR'
+    print(f"search arxiv with query: {query}, max_results: {max_result}")
     papers = search_arxiv(query=query, max_results=max_result)
     unique_papers = depulicate_papers(papers, history_paper)
 
