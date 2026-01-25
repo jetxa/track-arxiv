@@ -1,0 +1,56 @@
+name: push_paper
+
+on:
+  workflow_dispatch:
+  schedule:
+    - cron: '0 0 * * *' # 每天北京时间8:00执行
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v4
+    - name: Set up Python 3.10
+      uses: actions/setup-python@v3
+      with:
+        python-version: "3.10"
+    - name: Install dependencies
+      run: pip install -r requirements.txt
+    - name: output env
+      env:
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
+        MAX_RESULT: ${{ secrets.MAX_RESULT }}
+      run: |
+        echo "MODEL_NAME: $MODEL_NAME"
+        echo "MAX_RESULT: $MAX_RESULT"
+    - name: Push paper
+      env:
+        MODEL_NAME: ${{ secrets.MODEL_NAME }}
+        BASE_URL: ${{ secrets.BASE_URL }}
+        API_KEY: ${{ secrets.API_KEY }}
+        BOT_URL: ${{ secrets.BOT_URL }}
+        MAX_RESULT: ${{ secrets.MAX_RESULT }}
+      run: python get_arxiv_paper.py
+    - name: commit
+      id: commit
+      run: |
+        git config --local user.email "action@github.com"
+        git config --local user.name "github-actions"
+        git add --all
+        if [ -z "$(git status --porcelain)" ]; then
+           echo "::set-output name=push::false"
+        else
+           git commit -m "chore: update confs" -a
+           echo "::set-output name=push::true"
+        fi
+      shell: bash
+    - name: Push changes
+      if: steps.commit.outputs.push == 'true'
+      uses: ad-m/github-push-action@master
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
