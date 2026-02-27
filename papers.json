@@ -3995,5 +3995,12 @@
         "entry_id": "http://arxiv.org/abs/2602.20800v2",
         "pub_date": "2026-02-24",
         "translated_summary": "在生成式信息检索（GenIR）中，瓶颈已从“生成”转移到“候选排序”，特别是对文化契合度等规范性标准的筛选。现有基于大型语言模型的评委方法常因“循环论证”和“偏好泄露”而失真——监督与评测模型重叠，导致性能虚高。为此，我们将文化契合度规范化为一次查询内的排序任务，提出一种“零泄露双评委”框架：监督评委（Judge B）与评测评委（Judge A）严格隔离，不得共享信号。\n\n基于新建基准 NGR-33k（33,052 条文化嵌入故事），实验揭示：传统基线改进有限；但将从 Judge-B 指导的交叉编码器蒸馏出的稠密双编码器出奇有效。虽然交叉编码器提供了极强的监督信号，经泄漏检验的 Judge-A 评分表明，蒸馏后的 BGE-M3 模型反而大幅超越前者。我们还在人工构建的 Moral Stories 数据集上验证框架，与人类价值观高度一致。\n\n实验结论强调：只有把评委严格隔离，才能保证 GenIR 评估可信；而即便是细腻的文化偏好，也能在无泄露的情况下被高效排序器安全吸收。"
+    },
+    {
+        "title": "LiCQA : A Lightweight Complex Question Answering System",
+        "summary": "Over the last twenty years, significant progress has been made in designing and implementing Question Answering (QA) systems. However, addressing complex questions, the answers to which are spread across multiple documents, remains a challenging problem. Recent QA systems that are designed to handle complex questions work either on the basis of knowledge graphs, or utilise contem- porary neural models that are expensive to train, in terms of both computational resources and the volume of training data required. In this paper, we present LiCQA, an unsupervised question answer- ing model that works primarily on the basis of corpus evidence. We empirically compare the effectiveness and efficiency of LiCQA with two recently presented QA systems, which are based on different underlying principles. The results of our experiments show that LiCQA significantly outperforms these two state-of-the-art systems on benchmark data with noteworthy reduction in latency.",
+        "entry_id": "http://arxiv.org/abs/2602.22182v1",
+        "pub_date": "2026-02-25",
+        "translated_summary": "过去二十年，问答（QA）系统的设计与实现已取得显著进展。然而，当答案分散在多篇文档中的复杂问题时，仍然是难以攻克的难题。现有面向复杂问题的 QA 系统，要么依赖知识图谱，要么采用计算资源与训练数据需求均极高的神经模型。本文提出 LiCQA——一种无监督的问答模型，主要凭借语料库证据作答。我们在基准数据上将 LiCQA 与两种新近提出的、原理各异的 QA 系统进行实证对比。实验结果显示，LiCQA 不仅显著优于这两种最新系统，且延迟显著降低。"
     }
 ]
